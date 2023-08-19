@@ -62,20 +62,15 @@ def displayHistogram(data, colTitleName):
 
             for i, count in enumerate(value_counts.values):
                 plt.text(i, count, str(count), ha="center", va="bottom")
-
-            plt.xticks(rotation=30)
-            plt.tight_layout()
             plt.show()
         else:
             sns.histplot(
                 column_data, kde=True, color=random.choice(list(sns.color_palette()))
             )
             plt.xlabel(colTitleName)
-            plt.tight_layout()
             plt.show()
     else:
         print(f"Column '{colTitleName}' does not exist in the data.")
-
 
 
 def displayBoxplot(data, posOfxColumn, posOfyColunm):
@@ -84,9 +79,7 @@ def displayBoxplot(data, posOfxColumn, posOfyColunm):
     plt.figure(figsize=(8, 6))
     if data[posOfxColumn].dtype == "object":
         unique_x = data[posOfxColumn].unique()
-        colors = random.choices(list(sns.color_palette()), k=len(unique_x))
-
-        sns.boxplot(data=data, x=posOfxColumn, y=posOfyColunm, palette=colors)
+        
         plt.title(f"comparing {posOfxColumn} vs {posOfyColunm} {name}")
         plt.xlabel(posOfxColumn)
         plt.ylabel(posOfyColunm)
@@ -95,13 +88,13 @@ def displayBoxplot(data, posOfxColumn, posOfyColunm):
         unique_y = data[posOfyColunm].unique()
         colors = random.choices(list(sns.color_palette()), k=len(unique_y))
 
-        sns.boxplot(data=data, x=posOfxColumn, y=posOfyColunm, palette=colors)
+    
         plt.title(f"{posOfxColumn} vs {posOfyColunm} {name}")
         plt.xlabel(posOfxColumn)
         plt.ylabel(posOfyColunm)
 
     else:
-        sns.boxplot(data=data, x=posOfxColumn, y=posOfyColunm)
+        
         plt.title(f"{posOfxColumn} vs {posOfyColunm} {name}")
         plt.xlabel(posOfxColumn)
         plt.ylabel(posOfyColunm)
@@ -129,17 +122,15 @@ def displayingScatterplot(data, posOfxColumn, posOfyColunm):
     elif data[posOfyColunm].dtype == "object":
         unique_y = data[posOfyColunm].unique()
         colors = random.choices(list(sns.color_palette()), k=len(unique_y))
-
-        sns.stripplot(data=data, x=posOfxColumn, y=posOfyColunm, hue=posOfyColunm, palette=colors)
+        
 
     else:
-        sns.scatterplot(data=data, x=posOfxColumn, y=posOfyColunm)
-
-    plt.title(f"comparing {posOfxColumn} vs {posOfyColunm} {name}")
-    plt.xlabel(posOfxColumn)
-    plt.ylabel(posOfyColunm)
-    plt.tight_layout()
-    plt.show()
+        
+        plt.title(f"comparing {posOfxColumn} vs {posOfyColunm} {name}")
+        plt.xlabel(posOfxColumn)
+        plt.ylabel(posOfyColunm)
+        plt.tight_layout()
+        plt.show()
 
 
 def displayingPiechart(data, column):
@@ -158,7 +149,6 @@ def displayingPiechart(data, column):
 def main():
     try:
         file_path = input("Give me your path to display your data: ")
-        data1 = loadDataFromPC(file_path)
         data = loadDataFromPC(file_path)
         dataAfterProcessing = handeling_data(data)
         while True:
@@ -185,7 +175,7 @@ def main():
                     if userChoice == 0:
                         exit()
                 print("\nAvailable Columns:")
-                for i, column in enumerate(data1.columns):
+                for i, column in enumerate(data.columns):
                     print(f"{i}. {column}")
 
                 column_choice = int(input("Enter the number of column you want: "))
