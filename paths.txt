@@ -1,0 +1,5 @@
+R:\Capstone Automated EDA\Employee Sample Data.csv
+
+R:\Capstone Automated EDA\Employee Sample Data.xlsx
+
+R:\Capstone Automated EDA\supermarket_sales - Sheet1.csv
